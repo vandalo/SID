@@ -1,0 +1,21 @@
+10:29:15,179 I: (ErlangCore.java:64) : Starting CORE Thread[Worker-4,5,main]
+10:29:15,224 I: (ErlangCore.java:79) : *** starting Erlide v0.29.11.201502161407 (core=0.24.12.201502161407) (model api=0.24.11.201502161407) *** (Cp1252) ui
+10:29:15,317 I: (ErlangCore.java:86) : Started CORE
+10:29:15,408 F: (ErlangPlugin.java:88) : Core started
+10:29:18,967 F: (ErlangHostnameRetriever.java:40) : Test long hostname: c6s303pc25.fib.upc.es
+10:29:19,585 F: (ErlangHostnameRetriever.java:40) : Test short hostname: c6s303pc25
+10:29:19,596 F: (HostnameUtils.java:74) : Detected:: c6s303pc25 && c6s303pc25.fib.upc.es
+10:29:19,618 F: (BackendActivator.java:25) : Backend plugin started
+10:29:19,622 I: (ErlideUIPlugin.java:130) : Starting UI Thread[Worker-4,5,main]
+10:29:19,663 F: (ModelActivator.java:19) : Starting Erlang model api
+10:29:19,750 F: (BackendFactory.java:42) : Create ide backend 17.5.0
+10:29:19,751 F: (BackendFactory.java:56) : Create backend b2cd3_ferrancomarosell_e1e9f0_erlide
+10:29:19,800 F: (OtpNodeProxy.java:302) : Runtime b2cd3_ferrancomarosell_e1e9f0_erlide@c6s303pc25.fib.upc.es starting
+10:29:19,802 F: (OtpNodeProxy.java:420) : START node :> ["c:\program files\erl6.4/bin/erl", -name, b2cd3_ferrancomarosell_e1e9f0_erlide@c6s303pc25.fib.upc.es, -setcookie, erlide] *** F:\SID
+10:29:19,841 F: (OtpNodeProxy.java:213) : b2cd3_ferrancomarosell_e1e9f0_erlide@c6s303pc25.fib.upc.es: waiting connection to peer... 
+10:29:20,275 F: (OtpNodeProxy.java:220) : connected!
+10:29:20,675 F: (OtpNodeProxy.java:307) : Runtime b2cd3_ferrancomarosell_e1e9f0_erlide@c6s303pc25.fib.upc.es running
+10:29:20,688 F: (LogEventHandler.java:27) : info: {"Monitoring java node",'jerlide_1e1ea58@c6s303pc25.fib.upc.es'}
+10:29:20,692 F: (LogEventHandler.java:27) : info: {"Start monitor process: ",10000000,50000000}
+10:29:20,902 F: (ModelActivator.java:30) : Started model api
+10:29:20,915 I: (ErlideUIPlugin.java:152) : Started UI
