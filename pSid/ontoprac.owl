@@ -1,0 +1,335 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ontoprac "http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#"
+     xml:base="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ontoprac="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput -->
+
+    <owl:ObjectProperty rdf:about="&ontoprac;hasInput">
+        <rdfs:domain rdf:resource="&ontoprac;Process"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput -->
+
+    <owl:ObjectProperty rdf:about="&ontoprac;hasOutput">
+        <rdfs:domain rdf:resource="&ontoprac;Process"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasCode -->
+
+    <owl:DatatypeProperty rdf:about="&ontoprac;hasCode">
+        <rdfs:domain rdf:resource="&ontoprac;Process"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasDBO -->
+
+    <owl:DatatypeProperty rdf:about="&ontoprac;hasDBO">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&ontoprac;hasIndicator"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasIndicator -->
+
+    <owl:DatatypeProperty rdf:about="&ontoprac;hasIndicator">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&ontoprac;Water_mass"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasVolume -->
+
+    <owl:DatatypeProperty rdf:about="&ontoprac;hasVolume">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&ontoprac;Water_mass"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Clean_water_mass -->
+
+    <owl:Class rdf:about="&ontoprac;Clean_water_mass">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ontoprac;Water_mass"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasDBO"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;float"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;float">0.4</xsd:maxInclusive>
+                                    </rdf:Description>
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;float">0.0</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasVolume"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;float"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;float">0.0</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&ontoprac;Polluted_water_mass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Merge_water -->
+
+    <owl:Class rdf:about="&ontoprac;Merge_water">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasInput"/>
+                        <owl:onClass rdf:resource="&ontoprac;Water_mass"/>
+                        <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasOutput"/>
+                        <owl:onClass rdf:resource="&ontoprac;Water_mass"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontoprac;Process"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polluted_water_mass -->
+
+    <owl:Class rdf:about="&ontoprac;Polluted_water_mass">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ontoprac;Water_mass"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasDBO"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;float"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;float">100.0</xsd:maxInclusive>
+                                    </rdf:Description>
+                                    <rdf:Description>
+                                        <xsd:minExclusive rdf:datatype="&xsd;float">0.4</xsd:minExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasVolume"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;float"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;float">0.0</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process -->
+
+    <owl:Class rdf:about="&ontoprac;Process">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasInput"/>
+                        <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasOutput"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ontoprac;hasCode"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass -->
+
+    <owl:Class rdf:about="&ontoprac;Water_mass">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#merge_water_another_implementation -->
+
+    <owl:NamedIndividual rdf:about="&ontoprac;merge_water_another_implementation">
+        <rdf:type rdf:resource="&ontoprac;Merge_water"/>
+        <hasCode rdf:datatype="&xsd;string">efficientMergeWater</hasCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#merge_water_luis_implementation -->
+
+    <owl:NamedIndividual rdf:about="&ontoprac;merge_water_luis_implementation">
+        <rdf:type rdf:resource="&ontoprac;Merge_water"/>
+        <hasCode rdf:datatype="&xsd;string">mergeWater</hasCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#water_mass_1 -->
+
+    <owl:NamedIndividual rdf:about="&ontoprac;water_mass_1">
+        <rdf:type rdf:resource="&ontoprac;Water_mass"/>
+        <hasDBO rdf:datatype="&xsd;float">0.45</hasDBO>
+        <hasVolume rdf:datatype="&xsd;float">20.0</hasVolume>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#water_mass_2 -->
+
+    <owl:NamedIndividual rdf:about="&ontoprac;water_mass_2">
+        <rdf:type rdf:resource="&ontoprac;Water_mass"/>
+        <hasDBO rdf:datatype="&xsd;float">0.2</hasDBO>
+        <hasVolume rdf:datatype="&xsd;float">30.5</hasVolume>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ontoprac;water_mass_1"/>
+            <rdf:Description rdf:about="&ontoprac;water_mass_2"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointProperties"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ontoprac;hasCode"/>
+            <rdf:Description rdf:about="&ontoprac;hasIndicator"/>
+            <rdf:Description rdf:about="&ontoprac;hasVolume"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
