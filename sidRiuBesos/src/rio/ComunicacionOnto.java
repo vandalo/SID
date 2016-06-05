@@ -14,30 +14,33 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFactory;
 import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.NodeIterator;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.Vector;
 
-public class EjemploPractica{
+public class ComunicacionOnto{
     OntModel model;
     String JENAPath;
     String OntologyFile;
     String NamingContext;
     OntDocumentManager dm;
 
-    public EjemploPractica(String _JENA_PATH, String _File,String _NamingContext) {
+    public ComunicacionOnto(String _JENA_PATH, String _File,String _NamingContext) {
         this.JENAPath = _JENA_PATH;
         this.OntologyFile = _File;
         this.NamingContext =  _NamingContext;
     }
 
     public void loadOntology() {
-        System.out.println("· Loading Ontology");
+        System.out.println("Loading Ontology");
         model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
         dm = model.getDocumentManager();
         dm.addAltEntry(NamingContext, "file:" + JENAPath + OntologyFile );
@@ -45,7 +48,7 @@ public class EjemploPractica{
     }
 
     public void releaseOntology() throws FileNotFoundException {
-        System.out.println("· Releasing Ontology");
+        System.out.println("Releasing Ontology");
         if (!model.isClosed()){
             model.write(new FileOutputStream(OntologyFile));
             model.close();
@@ -54,7 +57,7 @@ public class EjemploPractica{
 
 	public Watermass reifyWater(String URI) {
 		Individual water = model.getIndividual(URI);
-		
+		//ExtendedIterator<Individual> individuals = model.listIndividuals();
 		Property volume = model.getProperty(NamingContext+"hasVolume");
 		RDFNode nodeVolume = water.getPropertyValue(volume);
 		float v = nodeVolume.asLiteral().getFloat();
@@ -65,6 +68,24 @@ public class EjemploPractica{
 		
 		return new Watermass(v, d);
 	}
+	
+	
+	//crea una instancia de la clase industria con los atributos que tiene en la ontologia
+	public Industria reifyIndustry(String URI) {
+		Individual industria = model.getIndividual(URI);
+		Property residuos = model.getProperty(NamingContext+"hasResiduo");
+		NodeIterator it = industria.listPropertyValues(residuos);
+		Vector<Residuo> resid = new Vector<Residuo>();
+		Individual indiv;
+		while (it.hasNext()){
+			indiv = it.next().as(Individual.class);
+			resid.add(new Residuo(indiv.getLocalName(), 
+					indiv.getProperty(model.getProperty(NamingContext+"hasConcentracion")).getFloat()));
+		}
+		//System.out.println(resid);
+		return new Industria(resid);
+	}
+	
     
     public List<Individual> getWater(){
     	List<Individual> result = new ArrayList<Individual>();
@@ -88,7 +109,7 @@ public class EjemploPractica{
         particularWatermass.addLiteral(dbo, d);
     }
     
-    public String executeQuery(){
+    public String executeQuery(int choise){
     	String queryString ="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
     	   					"PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
     	   					"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
