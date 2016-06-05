@@ -98,6 +98,31 @@ public class ComunicacionOnto{
 		return result;
     }
     
+    public Watermass reifyWaterWithPrefix(String prefix){
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Clean_water_mass");
+    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().startsWith(prefix)){
+    			return instanceWatermass(ind);
+    		}
+        }
+    	return null;
+    }
+    
+    
+    private Watermass instanceWatermass(Individual water) {
+		Property volume = model.getProperty(NamingContext+"hasVolume");
+		RDFNode nodeVolume = water.getPropertyValue(volume);
+		float v = nodeVolume.asLiteral().getFloat();
+		
+		Property dbo = model.getProperty(NamingContext+"hasDBO");
+		RDFNode nodeDBO = water.getPropertyValue(dbo);
+		float d = nodeDBO.asLiteral().getFloat();
+		
+		return new Watermass(v, d);
+	}
+    
+    
     public void addWatermass(Watermass w){
     	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
         Individual particularWatermass = watermassClass.createIndividual(NamingContext+"water_mass_"+ UUID.randomUUID());
@@ -117,7 +142,7 @@ public class ComunicacionOnto{
     	   					"PREFIX prac: <http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#> "+
     	   					"SELECT ?functionName "+
     	   					"WHERE { "+
-    	   					 "?s a prac:Merge_water ." +
+    	   					 ((choise == 1) ? "?s a prac:Merge_water ." : "?s a prac:Proceso_Industrial .") +
     	   					 "?s prac:hasCode ?functionName }";
     	Query query = QueryFactory.create(queryString);
     	String nameFunction = "";
