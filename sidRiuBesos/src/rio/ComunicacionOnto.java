@@ -134,7 +134,20 @@ public class ComunicacionOnto{
         particularWatermass.addLiteral(dbo, d);
     }
     
+    
+    public void editWatermass(Watermass w, String URI){
+    	Individual particularWatermass = model.getIndividual(URI);
+    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(w.volume);
+    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(w.dbo);
+    }
+    
+    
     public String executeQuery(int choise){
+    	String aux = "";
+    	if (choise == 1) aux = "?s a prac:Merge_water .";
+    	else if (choise == 2) aux = "?s a prac:Proceso_Industrial .";
+    	else if (choise == 3) aux = "?s a prac:Verter_Aguas .";
+    	
     	String queryString ="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
     	   					"PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
     	   					"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
@@ -142,7 +155,7 @@ public class ComunicacionOnto{
     	   					"PREFIX prac: <http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#> "+
     	   					"SELECT ?functionName "+
     	   					"WHERE { "+
-    	   					 ((choise == 1) ? "?s a prac:Merge_water ." : "?s a prac:Proceso_Industrial .") +
+    	   					aux + 
     	   					 "?s prac:hasCode ?functionName }";
     	Query query = QueryFactory.create(queryString);
     	String nameFunction = "";

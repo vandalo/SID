@@ -27,7 +27,14 @@ public class Processes {
 		return new Watermass(w1.volume+w2.volume, (w1.dbo*w1.volume+w2.dbo*w2.volume)/w1.volume+w2.volume);
 	}
 	
+	//TODO CREAR UNA FUNCION RAZONABLE
 	public static Watermass Ejecutar_PI(Industria ind, Watermass w2){
 		return new Watermass(ind.residuos.size()+w2.volume, (ind.residuos.size()*ind.residuos.size()+w2.dbo*w2.volume)/ind.residuos.size()+w2.volume);
+	}
+	
+	//actualizar el agua de la depuradora con la masa de agua que devolvemos, la cual es la mezcla de las aguas
+	public static Watermass Verter_Aguas(Industria ind[], Watermass w2[]){
+		//TODO HACER LA MEZCLA DE AGUAS
+		return new Watermass(0,0);
 	}
 }
