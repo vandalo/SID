@@ -18,7 +18,7 @@ public class Main {
         comunicator.loadOntology();        
 
         System.out.println("Choose option: ");
-        System.out.println("1 = merge water en depuradora general");
+        System.out.println("1 = merge water");
         System.out.println("2 = proceso industrial");
         System.out.println("3 = Verter Aguas");
         int choise = scan.nextInt();
@@ -31,8 +31,13 @@ public class Main {
         	String industria = "";
 	        Object w1, w2;
 	        if (choise == 1){
-		        w2 = comunicator.reifyWater(NamingContext+"water_mass_2");
-		        w1 = comunicator.reifyWater(NamingContext+"water_mass_1");
+	        	String wm1, wm2;
+	        	System.out.println("Entra el nombre de la primera masa de agua");
+	        	wm1 = scan.next();
+	        	System.out.println("Entra el nombre de la primera masa de agua");
+	        	wm2 = scan.next();
+		        w2 = comunicator.reifyWater(NamingContext+wm1);
+		        w1 = comunicator.reifyWater(NamingContext+wm2);
 		        System.out.println(w1.toString());
 		        System.out.println(w2.toString());
 	        }
@@ -40,8 +45,10 @@ public class Main {
 	        	//industria = "Polleria_Loli";
 	        	System.out.println("Escribe el nombre de la industria (case sensitive)");
 	        	industria = scan.next();
+	        	float volumen = comunicator.getPropertyNeedsVolumen(NamingContext+industria);
+	        	System.out.println("Volumen probar: " + volumen);
 	        	w1 = comunicator.reifyIndustry(NamingContext+industria);
-	        	w2 = comunicator.reifyWaterWithPrefix("pre");
+	        	w2 = comunicator.reifyWaterWithPrefixAndDelete("rio", volumen);
 	        	System.out.println("Industria Proceso: " + w1.toString());
 	        	System.out.println("Water Proceso: " + w2.toString());
 	        }
@@ -92,7 +99,8 @@ public class Main {
 	        		w3 = Processes.efficientMergeWater(w3, w4);
 	        		comunicator.editWatermass(w3, NamingContext+"post_"+industria);
 	        	}
-	        	System.out.println(w3.toString());
+	        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora");
+	        	System.out.println("Agua de salida: " + w3.toString());
 	        }
         }
         

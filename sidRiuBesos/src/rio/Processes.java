@@ -29,7 +29,11 @@ public class Processes {
 	
 	//TODO CREAR UNA FUNCION RAZONABLE
 	public static Watermass Ejecutar_PI(Industria ind, Watermass w2){
-		return new Watermass(ind.residuos.size()+w2.volume, (ind.residuos.size()*ind.residuos.size()+w2.dbo*w2.volume)/ind.residuos.size()+w2.volume);
+		float dboTotal = 0;;
+		for (Residuo res : ind.residuos){
+			dboTotal += res.concentracion*2;
+		}
+		return new Watermass(w2.volume, dboTotal);
 	}
 	
 	//actualizar el agua de la depuradora con la masa de agua que devolvemos, la cual es la mezcla de las aguas

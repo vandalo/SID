@@ -17,10 +17,13 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.NodeIterator;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.reasoner.rulesys.builtins.Remove;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -110,6 +113,22 @@ public class ComunicacionOnto{
     }
     
     
+    public Watermass reifyWaterWithPrefixAndDelete(String prefix, float volumen){
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().startsWith(prefix)){
+    			Watermass wm = instanceWatermass(ind);
+    			wm.volume = volumen;
+    			modifyVolRio(volumen, ind);
+    			//deleteWatermass(ind);
+    			return wm;
+    		}
+        }
+    	return null;
+    }
+    
+    
     private Watermass instanceWatermass(Individual water) {
 		Property volume = model.getProperty(NamingContext+"hasVolume");
 		RDFNode nodeVolume = water.getPropertyValue(volume);
@@ -118,9 +137,22 @@ public class ComunicacionOnto{
 		Property dbo = model.getProperty(NamingContext+"hasDBO");
 		RDFNode nodeDBO = water.getPropertyValue(dbo);
 		float d = nodeDBO.asLiteral().getFloat();
-		
 		return new Watermass(v, d);
 	}
+    
+    
+    public void deleteWatermass(Individual ind){
+    	ind.remove();
+    }
+    
+    
+    public float getPropertyNeedsVolumen(String URI){
+    	Individual industria = model.getIndividual(URI);
+    	Property needsVol = model.getProperty(NamingContext+"needsVolumen");
+    	RDFNode nodeDBO = industria.getPropertyValue(needsVol);
+		float vol = nodeDBO.asLiteral().getFloat();
+		return vol;
+    }
     
     
     public void addWatermass(Watermass w){
@@ -134,11 +166,28 @@ public class ComunicacionOnto{
         particularWatermass.addLiteral(dbo, d);
     }
     
+    public void addWatermass(Watermass w, String prefix){
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+        Individual particularWatermass = watermassClass.createIndividual(NamingContext+ 
+        		prefix + "water_mass_" + w.dbo * 50 +"-"+ new Date());
+        Property volume = model.getProperty(NamingContext+"hasVolume");
+        Property dbo = model.getProperty(NamingContext+"hasDBO");
+        Literal vol = model.createTypedLiteral(new Float(w.volume));
+        Literal d = model.createTypedLiteral(new Float(w.dbo));
+        particularWatermass.addLiteral(volume, vol);
+        particularWatermass.addLiteral(dbo, d);
+    }
+    
     
     public void editWatermass(Watermass w, String URI){
     	Individual particularWatermass = model.getIndividual(URI);
     	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(w.volume);
     	particularWatermass.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(w.dbo);
+    }
+    
+    public void modifyVolRio(float vol, Individual particularWatermass){
+    	float old = particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
+    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(old - vol);
     }
     
     
@@ -174,5 +223,8 @@ public class ComunicacionOnto{
     	}
     	return nameFunction;
      }
+    
+   
+    
      
 }
