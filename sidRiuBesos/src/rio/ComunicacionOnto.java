@@ -21,7 +21,7 @@ import org.apache.jena.rdf.model.RDFNode;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -163,6 +163,18 @@ public class ComunicacionOnto{
     }
     
     
+    public void updateDepuradora(Depuradora dep, int horas, String sufix){
+    	OntClass depuradoras = model.getOntClass(NamingContext+"Depuradora");
+    	for (Iterator<Individual> i = model.listIndividuals(depuradoras); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().endsWith(sufix)){
+    			ind.getProperty(model.getProperty(NamingContext+"hasTiempoVida")).changeLiteralObject(dep.tiempoVida+horas);
+    			//TODO UPDATE EFICIENCIA
+    		}
+        }
+    }
+    
+    
     private Depuradora instanceDepuradora(Individual depur) {
 		Property volume = model.getProperty(NamingContext+"hasEficiencia");
 		RDFNode nodeVolume = depur.getPropertyValue(volume);
@@ -205,7 +217,8 @@ public class ComunicacionOnto{
     public void addWatermass(Watermass w, String prefix){
     	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
         Individual particularWatermass = watermassClass.createIndividual(NamingContext+ 
-        		prefix + "water_mass_" + w.dbo * 50 +"-"+ new Date());
+        		prefix + "water_mass_" + w.dbo +"-"+ Calendar.getInstance().get(Calendar.MINUTE)
+        		+ Calendar.getInstance().get(Calendar.SECOND));
         Property volume = model.getProperty(NamingContext+"hasVolume");
         Property dbo = model.getProperty(NamingContext+"hasDBO");
         Literal vol = model.createTypedLiteral(new Float(w.volume));
@@ -232,24 +245,29 @@ public class ComunicacionOnto{
 	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(wl.get(i).dbo);
     		}
     		else {
-    			deleteWatermass(indivs.get(i));
     			//actualizamos el rio que toca
     			modifyVolDboRio(indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat(), 
     					indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat(), rio);
+    			
+    			deleteWatermass(indivs.get(i));
     		}
     	}
     }
     
     //coge el rio de su posicion o mas abajo
     private Individual reifyRioIndiv(int posicion){
-    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
-    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
-    		Individual ind = i.next();
-    		if (ind.getProperty(model.getProperty(NamingContext+"hasVolume")).getInt() > posicion)
-    			return ind;
-        }
+    	Individual rio = model.getIndividual(NamingContext+"Rio_Besos");
+    	Property aguas = model.getProperty(NamingContext+"hasWatermass");
+    	NodeIterator it = rio.listPropertyValues(aguas);
+    	RDFNode rd;
+    	while (it.hasNext()){
+    		rd = it.next();
+			if ((rd.as(Individual.class)).getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt() > posicion)
+				return rd.as(Individual.class);
+		}
     	return null;
     }
+
     
     
     public void modifyVolRio(float vol, Individual particularWatermass){
@@ -261,9 +279,9 @@ public class ComunicacionOnto{
     public void modifyVolDboRio(float vol, float dbo, Individual rio){
     	float oldVol = rio.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
     	rio.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(oldVol + vol);
-    	float oldDbo = rio.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
+    	float oldDbo = rio.getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat();
     	float dboNuevo = (vol*dbo + oldVol * oldDbo) / (oldVol + vol);
-    	rio.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(dboNuevo);
+    	rio.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(dboNuevo);
     }
     
     

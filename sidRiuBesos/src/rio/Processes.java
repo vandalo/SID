@@ -30,7 +30,7 @@ public class Processes {
 	}
 	
 	public static Watermass efficientMergeWater(Watermass w1, Watermass w2){
-		return new Watermass(w1.volume+w2.volume, (w1.dbo*w1.volume+w2.dbo*w2.volume)/w1.volume+w2.volume);
+		return new Watermass(w1.volume+w2.volume, (w1.dbo*w1.volume+w2.dbo*w2.volume)/(w1.volume+w2.volume));
 	}
 	
 	public static Watermass Ejecutar_PI(Industria ind, Watermass w2){
@@ -43,8 +43,13 @@ public class Processes {
 	
 	//actualizar el agua de la depuradora con la masa de agua que devolvemos, la cual es la mezcla de las aguas
 	public static Watermass Verter_Aguas(Industria ind[], Watermass w2[]){
-		//TODO HACER LA MEZCLA DE AGUAS
-		return new Watermass(0,0);
+		float volumenTotal = 0, DBO = 0;
+		for (Watermass wm : w2){
+			volumenTotal += wm.volume;
+			DBO += (wm.dbo * wm.volume);
+		}
+		DBO = DBO/volumenTotal;
+		return new Watermass(volumenTotal,DBO);
 	}
 	
 	//LLAMADAS CONSTANTES A LIMPIAR 1H PARA HACER BIEN EL CALCULO

@@ -42,14 +42,16 @@ public class Main {
         	numDepuradora = scan.nextInt();
         	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
         	List<Watermass> aguasLimpiar = comunicator.getWaterListWithPrefix("depuradora"+numDepuradora);
-        	System.out.println("Aguas antes: " + aguasLimpiar);
+        	System.out.println("Aguas antes de depurar: " + aguasLimpiar);
         	List<Individual> aguasLimpiarIndividuals = comunicator.getWaterIndividualsPrefix("depuradora"+numDepuradora);
         	aguasLimpiar = Processes.CalcularDBOLimpiado(aguasLimpiar, dep.tiempoVida, horas);
         	comunicator.editOrDeleteWatermass(aguasLimpiar, aguasLimpiarIndividuals, dep.posicion);
-        	System.out.println("Aguas despues: " + aguasLimpiar);
+        	comunicator.updateDepuradora(dep,horas,String.valueOf(numDepuradora));
+        	System.out.println("Aguas despues de depurar: " + aguasLimpiar);
         }
 
         else if (choise == 1 || choise == 2 || choise == 3){
+        	int numDep = 1;
         	String industria = "";
 	        Object w1, w2;
 	        if (choise == 1){
@@ -75,6 +77,8 @@ public class Main {
 	        	System.out.println("Water Proceso: " + w2.toString());
 	        }
 	        else {
+	        	System.out.println("Escribe el numero de la depuradora donde verter");
+	        	numDep = scan.nextInt();
 	        	System.out.println("Escribe el numero de industrias que van a verter");
 	        	int aux = scan.nextInt();
 	        	Industria vecInds[] = new Industria[aux];
@@ -121,13 +125,13 @@ public class Main {
 	        		w3 = Processes.efficientMergeWater(w3, w4);
 	        		comunicator.editWatermass(w3, NamingContext+"post_"+industria);
 	        	}
-	        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora1_");
+	        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora"+numDep+"_");
 	        	System.out.println("Agua de salida: " + w3.toString());
 	        }
         }
         
         
-        
+        scan.close();
         comunicator.releaseOntology();
      
         System.out.println("--------- Program terminated --------------------");
