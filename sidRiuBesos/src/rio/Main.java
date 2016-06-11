@@ -3,7 +3,10 @@ package rio;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Scanner;
+
+import org.apache.jena.ontology.Individual;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException{
         String JENA = "./";
@@ -21,13 +24,32 @@ public class Main {
         System.out.println("1 = merge water");
         System.out.println("2 = proceso industrial");
         System.out.println("3 = Verter Aguas");
+        System.out.println("4 = Depurar Aguas De la Depuradora");
         int choise = scan.nextInt();
         Method method = null;
         Processes p = new Processes();
         String nameF = comunicator.executeQuery(choise);
         System.out.println(nameF);
         
-        if (choise == 1 || choise == 2 || choise == 3){
+        
+        
+        if (choise == 4){
+        	int horas, numDepuradora;
+        	Depuradora dep; 
+        	System.out.println("Entra el número de horas que van a transcurrir");
+        	horas = scan.nextInt();
+        	System.out.println("Entra el número de depuradora");
+        	numDepuradora = scan.nextInt();
+        	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
+        	List<Watermass> aguasLimpiar = comunicator.getWaterListWithPrefix("depuradora"+numDepuradora);
+        	System.out.println("Aguas antes: " + aguasLimpiar);
+        	List<Individual> aguasLimpiarIndividuals = comunicator.getWaterIndividualsPrefix("depuradora"+numDepuradora);
+        	aguasLimpiar = Processes.CalcularDBOLimpiado(aguasLimpiar, dep.tiempoVida, horas);
+        	comunicator.editOrDeleteWatermass(aguasLimpiar, aguasLimpiarIndividuals, dep.posicion);
+        	System.out.println("Aguas despues: " + aguasLimpiar);
+        }
+
+        else if (choise == 1 || choise == 2 || choise == 3){
         	String industria = "";
 	        Object w1, w2;
 	        if (choise == 1){
@@ -99,7 +121,7 @@ public class Main {
 	        		w3 = Processes.efficientMergeWater(w3, w4);
 	        		comunicator.editWatermass(w3, NamingContext+"post_"+industria);
 	        	}
-	        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora");
+	        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora1_");
 	        	System.out.println("Agua de salida: " + w3.toString());
 	        }
         }

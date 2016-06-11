@@ -1,6 +1,12 @@
 package rio;
 
+import java.util.List;
+
 public class Processes {
+	private static float k = 15;//random del archivo entre 1-50 TODO
+	public static float verterAguaCalidad = 0.1f; //CON QUE DBO VERTEMOS AGUA
+	
+	
 	public static float addVolume(float v1, float v2){
 		return v1+v2;
 	}
@@ -27,7 +33,6 @@ public class Processes {
 		return new Watermass(w1.volume+w2.volume, (w1.dbo*w1.volume+w2.dbo*w2.volume)/w1.volume+w2.volume);
 	}
 	
-	//TODO CREAR UNA FUNCION RAZONABLE
 	public static Watermass Ejecutar_PI(Industria ind, Watermass w2){
 		float dboTotal = 0;;
 		for (Residuo res : ind.residuos){
@@ -41,4 +46,39 @@ public class Processes {
 		//TODO HACER LA MEZCLA DE AGUAS
 		return new Watermass(0,0);
 	}
+	
+	//LLAMADAS CONSTANTES A LIMPIAR 1H PARA HACER BIEN EL CALCULO
+	//Y NO TRATAR EN LA ECUACION, AGUAS QUE ESTAN LIMPIAS (PORQUE
+	//PRESUPONEMOS QUE YA SE HABRAN VERTIDO AL RIO)
+	public static List<Watermass> CalcularDBOLimpiado(List<Watermass> aguas, int horasDeVida, int horasProceso){
+		while (horasProceso > 0){
+			CalcularLimpiadoHora(aguas, horasDeVida);
+			horasDeVida += 1;
+			horasProceso -= 1;
+		}
+		return aguas;
+	}
+	
+	//LIMPIAR 1H EN LA DEPURADORA
+	private static List<Watermass> CalcularLimpiadoHora(List<Watermass> aguas, int horaActual){
+		float limpiado = 0, totalVolumen = 0;
+		for (Watermass wm : aguas){
+			if (wm.dbo > verterAguaCalidad) totalVolumen += wm.volume;
+		}
+		limpiado = (k/totalVolumen) + 0.01f; //TODO CAMBIAR K POR VALOR DEL FICHERO CON HORA ACTUAL
+		for (Watermass wm : aguas){
+			if (wm.dbo > verterAguaCalidad && (limpiado < wm.dbo)) wm.dbo -= limpiado;
+			else if (wm.dbo > verterAguaCalidad) wm.dbo = verterAguaCalidad;
+		}
+		return aguas;
+	}
 }
+
+
+
+
+
+
+
+
+

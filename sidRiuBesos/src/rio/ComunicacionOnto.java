@@ -17,11 +17,9 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.NodeIterator;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.reasoner.rulesys.builtins.Remove;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -85,18 +83,30 @@ public class ComunicacionOnto{
 			resid.add(new Residuo(indiv.getLocalName(), 
 					indiv.getProperty(model.getProperty(NamingContext+"hasConcentracion")).getFloat()));
 		}
-		//System.out.println(resid);
 		return new Industria(resid);
 	}
 	
     
-    public List<Individual> getWater(){
+    public List<Individual> getWaterIndividualsPrefix(String prefix){
     	List<Individual> result = new ArrayList<Individual>();
     	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
     	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
     		Individual ind = i.next();
-    		result.add(ind);
-            System.out.println("    · " + ind.toString());
+    		if (ind.getLocalName().startsWith(prefix)) result.add(ind);
+        }
+		return result;
+    }
+    
+    
+    public List<Watermass> getWaterListWithPrefix(String prefix){
+    	List<Watermass> result = new ArrayList<Watermass>();
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().startsWith(prefix)){
+    			result.add(instanceWatermass(ind));
+    		}
+
         }
 		return result;
     }
@@ -128,7 +138,6 @@ public class ComunicacionOnto{
     	return null;
     }
     
-    
     private Watermass instanceWatermass(Individual water) {
 		Property volume = model.getProperty(NamingContext+"hasVolume");
 		RDFNode nodeVolume = water.getPropertyValue(volume);
@@ -138,6 +147,33 @@ public class ComunicacionOnto{
 		RDFNode nodeDBO = water.getPropertyValue(dbo);
 		float d = nodeDBO.asLiteral().getFloat();
 		return new Watermass(v, d);
+	}
+    
+    
+    public Depuradora reifyDepuradora(String sufix){
+    	OntClass depuradoras = model.getOntClass(NamingContext+"Depuradora");
+    	for (Iterator<Individual> i = model.listIndividuals(depuradoras); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().endsWith(sufix)){
+    			Depuradora dp = instanceDepuradora(ind);
+    			return dp;
+    		}
+        }
+    	return null;
+    }
+    
+    
+    private Depuradora instanceDepuradora(Individual depur) {
+		Property volume = model.getProperty(NamingContext+"hasEficiencia");
+		RDFNode nodeVolume = depur.getPropertyValue(volume);
+		float v = nodeVolume.asLiteral().getFloat();
+		
+		Property dbo = model.getProperty(NamingContext+"hasTiempoVida");
+		RDFNode nodeDBO = depur.getPropertyValue(dbo);
+		int d = nodeDBO.asLiteral().getInt();
+		
+		int pos = depur.getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt();
+		return new Depuradora(v, d, pos);
 	}
     
     
@@ -185,9 +221,49 @@ public class ComunicacionOnto{
     	particularWatermass.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(w.dbo);
     }
     
+    
+    public void editOrDeleteWatermass(List<Watermass> wl, List<Individual> indivs, int pos){
+    	//int pos = indivs.get(0).getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt();
+    	//cogemos el rio de la posicion que estamos o mas abajo
+    	Individual rio = reifyRioIndiv(pos);
+    	for (int i = 0; i < indivs.size(); i++){
+    		if (wl.get(i).dbo > Processes.verterAguaCalidad){
+	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(wl.get(i).volume);
+	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(wl.get(i).dbo);
+    		}
+    		else {
+    			deleteWatermass(indivs.get(i));
+    			//actualizamos el rio que toca
+    			modifyVolDboRio(indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat(), 
+    					indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat(), rio);
+    		}
+    	}
+    }
+    
+    //coge el rio de su posicion o mas abajo
+    private Individual reifyRioIndiv(int posicion){
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getProperty(model.getProperty(NamingContext+"hasVolume")).getInt() > posicion)
+    			return ind;
+        }
+    	return null;
+    }
+    
+    
     public void modifyVolRio(float vol, Individual particularWatermass){
     	float old = particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
     	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(old - vol);
+    }
+    
+    
+    public void modifyVolDboRio(float vol, float dbo, Individual rio){
+    	float oldVol = rio.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
+    	rio.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(oldVol + vol);
+    	float oldDbo = rio.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
+    	float dboNuevo = (vol*dbo + oldVol * oldDbo) / (oldVol + vol);
+    	rio.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(dboNuevo);
     }
     
     
@@ -221,6 +297,7 @@ public class ComunicacionOnto{
     	   	}
     	   	qe.close();
     	}
+    	if (choise > 3) return "";
     	return nameFunction;
      }
     
