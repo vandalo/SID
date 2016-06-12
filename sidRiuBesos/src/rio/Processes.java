@@ -6,7 +6,17 @@ import org.apache.jena.atlas.lib.Pair;
 
 public class Processes {
 	private static float k = 15;//random del archivo entre 1-50 TODO
-	public static float maxK = 50; //el caso para el 100% de eficiencia
+    
+    //Get all randoms for K
+	/*private static vetor<float> k;//random del archivo entre 1-50 TODO
+    BufferedReader br = null;
+    String sCurrentLine;
+    br = new BufferedReader(new FileReader("/resources/eficiencia.txt"));
+    while ((sCurrentLine = br.readLine()) != null) {
+        k.push_back((float)sCurrentLine);
+    }*/
+    
+    public static float maxK = 50; //el caso para el 100% de eficiencia
 	public static float verterAguaCalidad = 0.1f; //CON QUE DBO VERTEMOS AGUA
 	
 	
@@ -80,8 +90,10 @@ public class Processes {
 		for (Watermass wm : aguas){
 			if (wm.dbo > verterAguaCalidad) totalVolumen += wm.volume;
 		}
+        
 		limpiado = (k/totalVolumen) + 0.01f; //TODO CAMBIAR K POR VALOR DEL FICHERO CON HORA ACTUAL
-		for (Watermass wm : aguas){
+		//limpiado = (k[horasDeVida]/totalVolumen) + 0.0f
+        for (Watermass wm : aguas){
 			if (wm.dbo > verterAguaCalidad && (limpiado < wm.dbo)) wm.dbo -= limpiado;
 			else if (wm.dbo > verterAguaCalidad) wm.dbo = verterAguaCalidad;
 		}
