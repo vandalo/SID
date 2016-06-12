@@ -56,7 +56,154 @@ public class ComunicacionOnto{
         }
     }
 
-	public Watermass reifyWater(String URI) {
+	
+    //CREADORAS
+    /////////////////
+    
+    //crea una masa de agua en la ontologia a partir de una instancia de watermass
+    public void addWatermass(Watermass w){
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+        Individual particularWatermass = watermassClass.createIndividual(NamingContext+"water_mass_"+ UUID.randomUUID());
+        Property volume = model.getProperty(NamingContext+"hasVolume");
+        Property dbo = model.getProperty(NamingContext+"hasDBO");
+        Literal vol = model.createTypedLiteral(new Float(w.volume));
+        Literal d = model.createTypedLiteral(new Float(w.dbo));
+        particularWatermass.addLiteral(volume, vol);
+        particularWatermass.addLiteral(dbo, d);
+    }
+    
+  //crea una masa de agua en la ontologia a partir de una instancia de watermass con nombre un prefijo
+    public void addWatermass(Watermass w, String prefix){
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+        Individual particularWatermass = watermassClass.createIndividual(NamingContext+ 
+        		prefix + "water_mass_" + w.dbo +"-"+ Calendar.getInstance().get(Calendar.MINUTE)
+        		+ Calendar.getInstance().get(Calendar.SECOND));
+        Property volume = model.getProperty(NamingContext+"hasVolume");
+        Property dbo = model.getProperty(NamingContext+"hasDBO");
+        Literal vol = model.createTypedLiteral(new Float(w.volume));
+        Literal d = model.createTypedLiteral(new Float(w.dbo));
+        particularWatermass.addLiteral(volume, vol);
+        particularWatermass.addLiteral(dbo, d);
+    }
+    
+    
+    
+    
+    //DESTROYERS
+    /////////////////
+    
+    //borra un individual de la ontologia
+    public void deleteWatermass(Individual ind){
+    	ind.remove();
+    }
+    
+    
+    
+    //MODIFICADORAS
+    /////////////////
+    //edit vol rio
+    public void modifyVolRio(float vol, Individual particularWatermass){
+    	float old = particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
+    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(old - vol);
+    }
+    
+    //edit vol y dbo del rio
+    public void modifyVolDboRio(float vol, float dbo, Individual rio){
+    	float oldVol = rio.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
+    	rio.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(oldVol + vol);
+    	float oldDbo = rio.getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat();
+    	float dboNuevo = (vol*dbo + oldVol * oldDbo) / (oldVol + vol);
+    	rio.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(dboNuevo);
+    }
+    
+    
+    //edita una masa de agua
+    public void editWatermass(Watermass w, String URI){
+    	Individual particularWatermass = model.getIndividual(URI);
+    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(w.volume);
+    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(w.dbo);
+    }
+    
+    
+    //edita una masa de agua o la borra de la depuradora si esta limpia
+    public void editOrDeleteWatermass(List<Watermass> wl, List<Individual> indivs, int pos){
+    	//int pos = indivs.get(0).getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt();
+    	//cogemos el rio de la posicion que estamos o mas abajo
+    	Individual rio = reifyRioIndiv(pos);
+    	for (int i = 0; i < indivs.size(); i++){
+    		if (wl.get(i).dbo > Processes.verterAguaCalidad){
+	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(wl.get(i).volume);
+	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(wl.get(i).dbo);
+    		}
+    		else {
+    			//actualizamos el rio que toca
+    			modifyVolDboRio(indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat(), 
+    					indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat(), rio);
+    			
+    			deleteWatermass(indivs.get(i));
+    		}
+    	}
+    }
+    
+    //actualiza la depuradora
+    public void updateDepuradora(Depuradora dep, int horas, String sufix, float ef){
+    	OntClass depuradoras = model.getOntClass(NamingContext+"Depuradora");
+    	for (Iterator<Individual> i = model.listIndividuals(depuradoras); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().endsWith(sufix)){
+    			ind.getProperty(model.getProperty(NamingContext+"hasTiempoVida")).changeLiteralObject((int)(dep.tiempoVida+horas));
+    			float efDep = (dep.eficiencia * dep.tiempoVida + ef*horas)/(dep.tiempoVida+horas);
+    			ind.getProperty(model.getProperty(NamingContext+"hasEficiencia")).changeLiteralObject((float)efDep);
+    		}
+        }
+    }
+    
+    
+    
+    //CONSULTORAS
+    /////////////////
+    
+    //consulta que volumen necesita el proceso industrial
+    public float getPropertyNeedsVolumen(String URI){
+    	Individual industria = model.getIndividual(URI);
+    	Property needsVol = model.getProperty(NamingContext+"needsVolumen");
+    	RDFNode nodeDBO = industria.getPropertyValue(needsVol);
+		float vol = nodeDBO.asLiteral().getFloat();
+		return vol;
+    }
+    
+    //obtiene una lista de individuals que son watermass con el prefijo escogido
+    public List<Individual> getWaterIndividualsPrefix(String prefix){
+    	List<Individual> result = new ArrayList<Individual>();
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().startsWith(prefix)) result.add(ind);
+        }
+		return result;
+    }
+    
+    
+    //obtiene una lista de watermass con el prefijo escogido
+    public List<Watermass> getWaterListWithPrefix(String prefix){
+    	List<Watermass> result = new ArrayList<Watermass>();
+    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
+    		Individual ind = i.next();
+    		if (ind.getLocalName().startsWith(prefix)){
+    			result.add(instanceWatermass(ind));
+    		}
+
+        }
+		return result;
+    }
+    
+    
+    
+    //REIFYS (obtener instancias de la ontologia)
+    /////////////////
+    
+    public Watermass reifyWater(String URI) {
 		Individual water = model.getIndividual(URI);
 		//ExtendedIterator<Individual> individuals = model.listIndividuals();
 		Property volume = model.getProperty(NamingContext+"hasVolume");
@@ -87,30 +234,6 @@ public class ComunicacionOnto{
 	}
 	
     
-    public List<Individual> getWaterIndividualsPrefix(String prefix){
-    	List<Individual> result = new ArrayList<Individual>();
-    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
-    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
-    		Individual ind = i.next();
-    		if (ind.getLocalName().startsWith(prefix)) result.add(ind);
-        }
-		return result;
-    }
-    
-    
-    public List<Watermass> getWaterListWithPrefix(String prefix){
-    	List<Watermass> result = new ArrayList<Watermass>();
-    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
-    	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
-    		Individual ind = i.next();
-    		if (ind.getLocalName().startsWith(prefix)){
-    			result.add(instanceWatermass(ind));
-    		}
-
-        }
-		return result;
-    }
-    
     public Watermass reifyWaterWithPrefix(String prefix){
     	OntClass watermassClass = model.getOntClass(NamingContext+"Clean_water_mass");
     	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
@@ -138,6 +261,7 @@ public class ComunicacionOnto{
     	return null;
     }
     
+    
     private Watermass instanceWatermass(Individual water) {
 		Property volume = model.getProperty(NamingContext+"hasVolume");
 		RDFNode nodeVolume = water.getPropertyValue(volume);
@@ -163,18 +287,6 @@ public class ComunicacionOnto{
     }
     
     
-    public void updateDepuradora(Depuradora dep, int horas, String sufix){
-    	OntClass depuradoras = model.getOntClass(NamingContext+"Depuradora");
-    	for (Iterator<Individual> i = model.listIndividuals(depuradoras); i.hasNext();) {
-    		Individual ind = i.next();
-    		if (ind.getLocalName().endsWith(sufix)){
-    			ind.getProperty(model.getProperty(NamingContext+"hasTiempoVida")).changeLiteralObject(dep.tiempoVida+horas);
-    			//TODO UPDATE EFICIENCIA
-    		}
-        }
-    }
-    
-    
     private Depuradora instanceDepuradora(Individual depur) {
 		Property volume = model.getProperty(NamingContext+"hasEficiencia");
 		RDFNode nodeVolume = depur.getPropertyValue(volume);
@@ -187,72 +299,6 @@ public class ComunicacionOnto{
 		int pos = depur.getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt();
 		return new Depuradora(v, d, pos);
 	}
-    
-    
-    public void deleteWatermass(Individual ind){
-    	ind.remove();
-    }
-    
-    
-    public float getPropertyNeedsVolumen(String URI){
-    	Individual industria = model.getIndividual(URI);
-    	Property needsVol = model.getProperty(NamingContext+"needsVolumen");
-    	RDFNode nodeDBO = industria.getPropertyValue(needsVol);
-		float vol = nodeDBO.asLiteral().getFloat();
-		return vol;
-    }
-    
-    
-    public void addWatermass(Watermass w){
-    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
-        Individual particularWatermass = watermassClass.createIndividual(NamingContext+"water_mass_"+ UUID.randomUUID());
-        Property volume = model.getProperty(NamingContext+"hasVolume");
-        Property dbo = model.getProperty(NamingContext+"hasDBO");
-        Literal vol = model.createTypedLiteral(new Float(w.volume));
-        Literal d = model.createTypedLiteral(new Float(w.dbo));
-        particularWatermass.addLiteral(volume, vol);
-        particularWatermass.addLiteral(dbo, d);
-    }
-    
-    public void addWatermass(Watermass w, String prefix){
-    	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
-        Individual particularWatermass = watermassClass.createIndividual(NamingContext+ 
-        		prefix + "water_mass_" + w.dbo +"-"+ Calendar.getInstance().get(Calendar.MINUTE)
-        		+ Calendar.getInstance().get(Calendar.SECOND));
-        Property volume = model.getProperty(NamingContext+"hasVolume");
-        Property dbo = model.getProperty(NamingContext+"hasDBO");
-        Literal vol = model.createTypedLiteral(new Float(w.volume));
-        Literal d = model.createTypedLiteral(new Float(w.dbo));
-        particularWatermass.addLiteral(volume, vol);
-        particularWatermass.addLiteral(dbo, d);
-    }
-    
-    
-    public void editWatermass(Watermass w, String URI){
-    	Individual particularWatermass = model.getIndividual(URI);
-    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(w.volume);
-    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(w.dbo);
-    }
-    
-    
-    public void editOrDeleteWatermass(List<Watermass> wl, List<Individual> indivs, int pos){
-    	//int pos = indivs.get(0).getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt();
-    	//cogemos el rio de la posicion que estamos o mas abajo
-    	Individual rio = reifyRioIndiv(pos);
-    	for (int i = 0; i < indivs.size(); i++){
-    		if (wl.get(i).dbo > Processes.verterAguaCalidad){
-	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(wl.get(i).volume);
-	    		indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(wl.get(i).dbo);
-    		}
-    		else {
-    			//actualizamos el rio que toca
-    			modifyVolDboRio(indivs.get(i).getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat(), 
-    					indivs.get(i).getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat(), rio);
-    			
-    			deleteWatermass(indivs.get(i));
-    		}
-    	}
-    }
     
     //coge el rio de su posicion o mas abajo
     private Individual reifyRioIndiv(int posicion){
@@ -267,24 +313,11 @@ public class ComunicacionOnto{
 		}
     	return null;
     }
-
     
     
-    public void modifyVolRio(float vol, Individual particularWatermass){
-    	float old = particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
-    	particularWatermass.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(old - vol);
-    }
     
-    
-    public void modifyVolDboRio(float vol, float dbo, Individual rio){
-    	float oldVol = rio.getProperty(model.getProperty(NamingContext+"hasVolume")).getFloat();
-    	rio.getProperty(model.getProperty(NamingContext+"hasVolume")).changeLiteralObject(oldVol + vol);
-    	float oldDbo = rio.getProperty(model.getProperty(NamingContext+"hasDBO")).getFloat();
-    	float dboNuevo = (vol*dbo + oldVol * oldDbo) / (oldVol + vol);
-    	rio.getProperty(model.getProperty(NamingContext+"hasDBO")).changeLiteralObject(dboNuevo);
-    }
-    
-    
+    //QUERY
+    /////////////////
     public String executeQuery(int choise){
     	String aux = "";
     	if (choise == 1) aux = "?s a prac:Merge_water .";

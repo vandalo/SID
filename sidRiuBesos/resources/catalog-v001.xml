@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1465683675127" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ont2.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1465683675127" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ontoprac%20-%20copia.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1465683675127" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ontoprac.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1465731296105" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ont2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1465731296105" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ontoprac%20-%20copia%20(2).owl"/>
+        <uri id="Automatically generated entry, Timestamp=1465731296105" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ontoprac%20-%20copia.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1465731296105" name="duplicate:http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac" uri="ontoprac.owl"/>
     </group>
 </catalog>

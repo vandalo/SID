@@ -2,8 +2,11 @@ package rio;
 
 import java.util.List;
 
+import org.apache.jena.atlas.lib.Pair;
+
 public class Processes {
 	private static float k = 15;//random del archivo entre 1-50 TODO
+	public static float maxK = 50; //el caso para el 100% de eficiencia
 	public static float verterAguaCalidad = 0.1f; //CON QUE DBO VERTEMOS AGUA
 	
 	
@@ -55,17 +58,24 @@ public class Processes {
 	//LLAMADAS CONSTANTES A LIMPIAR 1H PARA HACER BIEN EL CALCULO
 	//Y NO TRATAR EN LA ECUACION, AGUAS QUE ESTAN LIMPIAS (PORQUE
 	//PRESUPONEMOS QUE YA SE HABRAN VERTIDO AL RIO)
-	public static List<Watermass> CalcularDBOLimpiado(List<Watermass> aguas, int horasDeVida, int horasProceso){
+	public static Pair<Float, List<Watermass>> CalcularDBOLimpiado(List<Watermass> aguas, int horasDeVida, int horasProceso){
+		Pair<Float, List<Watermass>> p;
+		float eficienciaSumada = 0;
+		float aux = (float) horasProceso;
+		float efResult;
 		while (horasProceso > 0){
-			CalcularLimpiadoHora(aguas, horasDeVida);
-			horasDeVida += 1;
+			efResult = CalcularLimpiadoHora(aguas, horasDeVida);
+			eficienciaSumada += efResult;
 			horasProceso -= 1;
+			if (efResult > 0) horasDeVida += 1;
+			else aux -= 1;
 		}
-		return aguas;
+		p = new Pair<Float, List<Watermass>>(eficienciaSumada/aux, aguas);
+		return p;
 	}
 	
 	//LIMPIAR 1H EN LA DEPURADORA
-	private static List<Watermass> CalcularLimpiadoHora(List<Watermass> aguas, int horaActual){
+	private static float CalcularLimpiadoHora(List<Watermass> aguas, int horaActual){
 		float limpiado = 0, totalVolumen = 0;
 		for (Watermass wm : aguas){
 			if (wm.dbo > verterAguaCalidad) totalVolumen += wm.volume;
@@ -75,7 +85,8 @@ public class Processes {
 			if (wm.dbo > verterAguaCalidad && (limpiado < wm.dbo)) wm.dbo -= limpiado;
 			else if (wm.dbo > verterAguaCalidad) wm.dbo = verterAguaCalidad;
 		}
-		return aguas;
+		if (totalVolumen > 0 ) return ((limpiado - 0.01f)/(maxK/totalVolumen));
+		else return 0;
 	}
 }
 

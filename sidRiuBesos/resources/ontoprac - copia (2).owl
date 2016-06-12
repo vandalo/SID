@@ -731,9 +731,9 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora2">
         <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora"/>
         <hasEficiencia rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.7</hasEficiencia>
-        <hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3000.0</hasLimite>
         <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasPosicion>
         <hasTiempoVida rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasTiempoVida>
+        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3000.0</hasVolume>
     </owl:NamedIndividual>
     
 

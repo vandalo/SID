@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.jena.atlas.lib.Pair;
 import org.apache.jena.ontology.Individual;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException{
@@ -25,32 +26,15 @@ public class Main {
         System.out.println("2 = proceso industrial");
         System.out.println("3 = Verter Aguas");
         System.out.println("4 = Depurar Aguas De la Depuradora");
+        System.out.println("5 = Calcular tiempo necesario para depurar una masa de agua en una depuradora");
+        System.out.println("6 = Eficiencia/Velocidad de una depuradora");
         int choise = scan.nextInt();
         Method method = null;
         Processes p = new Processes();
         String nameF = comunicator.executeQuery(choise);
         System.out.println(nameF);
         
-        
-        
-        if (choise == 4){
-        	int horas, numDepuradora;
-        	Depuradora dep; 
-        	System.out.println("Entra el número de horas que van a transcurrir");
-        	horas = scan.nextInt();
-        	System.out.println("Entra el número de depuradora");
-        	numDepuradora = scan.nextInt();
-        	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
-        	List<Watermass> aguasLimpiar = comunicator.getWaterListWithPrefix("depuradora"+numDepuradora);
-        	System.out.println("Aguas antes de depurar: " + aguasLimpiar);
-        	List<Individual> aguasLimpiarIndividuals = comunicator.getWaterIndividualsPrefix("depuradora"+numDepuradora);
-        	aguasLimpiar = Processes.CalcularDBOLimpiado(aguasLimpiar, dep.tiempoVida, horas);
-        	comunicator.editOrDeleteWatermass(aguasLimpiar, aguasLimpiarIndividuals, dep.posicion);
-        	comunicator.updateDepuradora(dep,horas,String.valueOf(numDepuradora));
-        	System.out.println("Aguas despues de depurar: " + aguasLimpiar);
-        }
-
-        else if (choise == 1 || choise == 2 || choise == 3){
+        if (choise == 1 || choise == 2 || choise == 3){
         	int numDep = 1;
         	String industria = "";
 	        Object w1, w2;
@@ -128,6 +112,56 @@ public class Main {
 	        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora"+numDep+"_");
 	        	System.out.println("Agua de salida: " + w3.toString());
 	        }
+        }
+        
+        
+        else if (choise == 4){
+        	int horas, numDepuradora;
+        	Depuradora dep; 
+        	System.out.println("Entra el número de horas que van a transcurrir");
+        	horas = scan.nextInt();
+        	System.out.println("Entra el número de depuradora");
+        	numDepuradora = scan.nextInt();
+        	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
+        	List<Watermass> aguasLimpiar = comunicator.getWaterListWithPrefix("depuradora"+numDepuradora);
+        	System.out.println("Aguas antes de depurar: " + aguasLimpiar);
+        	List<Individual> aguasLimpiarIndividuals = comunicator.getWaterIndividualsPrefix("depuradora"+numDepuradora);
+        	Pair<Float, List<Watermass>> ret = Processes.CalcularDBOLimpiado(aguasLimpiar, dep.tiempoVida, horas);
+        	aguasLimpiar = ret.getRight();
+        	float ef = ret.getLeft();
+        	comunicator.editOrDeleteWatermass(aguasLimpiar, aguasLimpiarIndividuals, dep.posicion);
+        	comunicator.updateDepuradora(dep,horas,String.valueOf(numDepuradora), ef);
+        	System.out.println("Aguas despues de depurar: " + aguasLimpiar);
+        }
+        
+        else if (choise == 5){
+        	int numDepuradora; 
+        	float volumen, dboTope, dboActual, numHoras;
+        	Depuradora dep; 
+        	System.out.println("Entra el número de depuradora");
+        	numDepuradora = scan.nextInt();
+        	System.out.println("Entra el tamano de la masa de agua");
+        	volumen = scan.nextFloat();
+        	System.out.println("Indica hasta que DBO quieres limpiar");
+        	dboTope = scan.nextFloat();
+        	System.out.println("Indica que DBO tiene actualmente la masa de agua");
+        	dboActual = scan.nextFloat();
+        	
+        	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
+        	float dboHora = ((Processes.maxK / volumen) +0.01f)*dep.eficiencia;
+        	numHoras = (dboActual - dboTope) / dboHora;
+        	System.out.println("La depuradora " + numDepuradora + " con eficiencia del " +
+        			dep.eficiencia*100 + " % tardara " + numHoras + " horas en limpiar el agua.");
+        }
+        
+        else if (choise == 6){
+        	int numDepuradora;
+        	Depuradora dep; 
+        	System.out.println("Entra el número de depuradora");
+        	numDepuradora = scan.nextInt();
+        	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
+        	System.out.println("La depuradora " + numDepuradora + " tiene una eficiencia del " + dep.eficiencia*100 +
+        			" %.\nEsta depuradora tiene un tiempo de vida de " + dep.tiempoVida);
         }
         
         
