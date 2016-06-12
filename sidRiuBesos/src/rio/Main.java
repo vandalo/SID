@@ -22,11 +22,39 @@ public class Main {
         comunicator.loadOntology();        
 
         System.out.println("Choose option: ");
+        
+        //mezcla dos masas de agua con el nombre seleccionado
         System.out.println("1 = merge water");
+        
+        //a partir de las industrias seleccionadas, los residuos de estas y su concentracion,
+        //anade al almacen de cada industria el agua resultante del proceso industrial,
+        //haciendo un merge del agua ya almacenada con la del resultado del proceso.
+        //Esta preparado para que cada industria pueda realizar diferentes procesos industriales aunque
+        //por simplificar el proyecto y por falta del experto, cada industria realizara un unico proceso.
         System.out.println("2 = proceso industrial");
+        
+        //Escoges que industrias quieren verter y estas vacian su almacen en la depuradora, 
+        //haciendo previamente un merge de todas las aguas de todas las industrias que vierten a la vez,
+        //y posteriormente, este agua resultante se incorpora a la depuradora.
         System.out.println("3 = Verter Aguas");
+        
+        //Escoges cuantas horas quieres simular que han pasado y, en funcion del volumen de agua actual
+        //en la depuradora, hemos calculado una ecuacion que limpia un cierto DBO. El DBO que limpia, 
+        //para simular un agente real, lee unos datos que simulan lo "bien" que ha funcionado la depuradora esa hora,
+        //y a partir de ese valor, limpia un cierto DBO. A partir de ese DBO limpiado, calcula la eficiencia 
+        //a partir del maximo que podria haber limpiado (segun las especificaciones de la depuradora)
+        //y hacemos la media ponderada con las horas de vida que tenia la depuradora y su eficiencia, y las horas transcurridas
+        //con la eficiencia de este periodo.
+        //Ademas en este proceso, calculamos el periodo de horas, hora a hora, de manera que si un agua pasa a estar limpia 
+        //(DBO < 0.1) ya no la contabilizamos en el proceso de limpiado ya que en realidad la habremos hechado al rio (lo actualizamos
+        // al final).
         System.out.println("4 = Depurar Aguas De la Depuradora");
+        
+        //A partir de la eficiencia de la depuradora y el agua que ya hay en la depuradora escogida
+        //calculamos cuanto tardaria en limpiar una masa de agua con DBO0 hasta DBOf.
         System.out.println("5 = Calcular tiempo necesario para depurar una masa de agua en una depuradora");
+        
+        //Devolvemos el valor almacenado y actualizado de la ontologia con la eficiencia de la depuradora
         System.out.println("6 = Eficiencia/Velocidad de una depuradora");
         int choise = scan.nextInt();
         Method method = null;
@@ -148,7 +176,9 @@ public class Main {
         	dboActual = scan.nextFloat();
         	
         	dep = comunicator.reifyDepuradora(String.valueOf(numDepuradora));
-        	float dboHora = ((Processes.maxK / volumen) +0.01f)*dep.eficiencia;
+        	//List<Watermass> aguasLimpiar = comunicator.getWaterListWithPrefix("depuradora"+numDepuradora);
+        	
+        	float dboHora = (Processes.maxK / volumen)*dep.eficiencia + 0.01f;
         	numHoras = (dboActual - dboTope) / dboHora;
         	System.out.println("La depuradora " + numDepuradora + " con eficiencia del " +
         			dep.eficiencia*100 + " % tardara " + numHoras + " horas en limpiar el agua.");

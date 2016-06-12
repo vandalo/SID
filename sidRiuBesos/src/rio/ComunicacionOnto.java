@@ -308,7 +308,7 @@ public class ComunicacionOnto{
     	RDFNode rd;
     	while (it.hasNext()){
     		rd = it.next();
-			if ((rd.as(Individual.class)).getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt() > posicion)
+			if ((rd.as(Individual.class)).getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt() == posicion+1)
 				return rd.as(Individual.class);
 		}
     	return null;
