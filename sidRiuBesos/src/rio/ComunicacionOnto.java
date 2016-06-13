@@ -246,11 +246,14 @@ public class ComunicacionOnto{
     }
     
     
-    public Watermass reifyWaterWithPrefixAndDelete(String prefix, float volumen){
+    public Watermass reifyWaterWithPrefixAndDelete(String prefix, float volumen, String industria){
     	OntClass watermassClass = model.getOntClass(NamingContext+"Water_mass");
+    	Individual indus = model.getIndividual(NamingContext + industria);
+    	int pos = indus.getProperty(model.getProperty(NamingContext + "hasPosicion")).getInt();
     	for (Iterator<Individual> i = model.listIndividuals(watermassClass); i.hasNext();) {
     		Individual ind = i.next();
-    		if (ind.getLocalName().startsWith(prefix)){
+    		if (ind.getLocalName().startsWith(prefix) &&
+    				ind.getProperty(model.getProperty(NamingContext + "hasPosicion")).getInt() == pos){
     			Watermass wm = instanceWatermass(ind);
     			wm.volume = volumen;
     			modifyVolRio(volumen, ind);
