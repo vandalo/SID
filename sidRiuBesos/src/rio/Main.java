@@ -112,7 +112,7 @@ public class Main {
 		        	int aux = scan.nextInt();
 		        	Industria vecInds[] = new Industria[aux];
 		        	Watermass vecWater[] = new Watermass[aux];
-		        	System.out.println("Escribe: \nNmbre de una industria para verter (case sensitive)");
+		        	System.out.println("Escribe: \nNombre de una industria para verter (case sensitive)");
 		        	industria = scan.next();
 		        	for (; aux > 0; aux--){
 		        		vecInds[aux-1] = comunicator.reifyIndustry(NamingContext+industria);
