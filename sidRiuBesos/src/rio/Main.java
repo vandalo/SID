@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException{
         String JENA = "./";
         String File = "resources/ontoprac.owl";
-        String NamingContext = "http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#";
+        String NamingContext = "http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#";
         Scanner scan = new Scanner(System.in);
         
         System.out.println("----------------Starting program -------------");
@@ -154,7 +154,16 @@ public class Main {
 		        		w3 = Processes.efficientMergeWater(w3, w4);
 		        		comunicator.editWatermass(w3, NamingContext+"post_"+industria);
 		        	}
-		        	else if (choise == 3) comunicator.addWatermass(w3, "depuradora"+numDep+"_");
+		        	else if (choise == 3) {
+		        		Depuradora dep = comunicator.reifyDepuradora(String.valueOf(numDep));
+		        		List<Watermass> aguasLimpiar = comunicator.getWaterListWithPrefix("depuradora"+numDep);
+		        		float volOcupado = 0;
+		        		for (Watermass wm : aguasLimpiar) volOcupado += wm.volume;
+		        		//COMPROVAMOS QUE LA DEPURADORA NO ESTE LLENA O NO VAYA A DESBORDAR
+		        		if (w3.volume + volOcupado < dep.limite)
+		        			comunicator.addWatermass(w3, "depuradora"+numDep+"_");
+		        		else System.out.println("No cabe mas agua en la depuradora, escoge otra");
+		        	}
 		        	System.out.println("Agua de salida: " + w3.toString());
 		        }
 	        }

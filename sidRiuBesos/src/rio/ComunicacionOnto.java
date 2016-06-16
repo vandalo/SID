@@ -295,12 +295,16 @@ public class ComunicacionOnto{
 		RDFNode nodeVolume = depur.getPropertyValue(volume);
 		float v = nodeVolume.asLiteral().getFloat();
 		
+		Property limit = model.getProperty(NamingContext+"hasLimite");
+		RDFNode nodeLimit = depur.getPropertyValue(limit);
+		float limite = nodeLimit.asLiteral().getFloat();
+		
 		Property dbo = model.getProperty(NamingContext+"hasTiempoVida");
 		RDFNode nodeDBO = depur.getPropertyValue(dbo);
 		int d = nodeDBO.asLiteral().getInt();
 		
 		int pos = depur.getProperty(model.getProperty(NamingContext+"hasPosicion")).getInt();
-		return new Depuradora(v, d, pos);
+		return new Depuradora(v, d, pos, limite);
 	}
     
     //coge el rio de su posicion o mas abajo
@@ -331,7 +335,7 @@ public class ComunicacionOnto{
     	   					"PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
     	   					"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
     	   					"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
-    	   					"PREFIX prac: <http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#> "+
+    	   					"PREFIX prac: <http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#> "+
     	   					"SELECT ?functionName "+
     	   					"WHERE { "+
     	   					aux + 

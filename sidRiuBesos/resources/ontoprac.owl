@@ -1,1051 +1,860 @@
-<?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#"
-     xml:base="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:ontoprac="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasWatermass -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasWatermass">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasCode -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasCode">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasConcentracion -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasConcentracion">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasDBO -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasDBO">
-        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasIndicator"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasEficiencia -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasEficiencia">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasIndicator -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasIndicator">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasLimite -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasLimite">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasPosicion -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasPosicion">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasTiempoVida -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasTiempoVida">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasVolume -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasVolume">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#needsVolumen -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#needsVolumen">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Acero -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Acero">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Animal -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Animal">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#City_water -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#City_water">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasDBO"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</xsd:minExclusive>
-                                    </rdf:Description>
-                                    <rdf:Description>
-                                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.4</xsd:maxInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasVolume"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Clean_water_mass -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Clean_water_mass">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasDBO"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minInclusive>
-                                    </rdf:Description>
-                                    <rdf:Description>
-                                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</xsd:maxInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasVolume"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polluted_water_mass"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasWatermass"/>
-                        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasEficiencia"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasEficiencia"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</xsd:maxInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasLimite"/>
-                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasTiempoVida"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</xsd:minInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasPosicion"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasLimite"/>
-                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasPosicion"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Mercurio -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Mercurio">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Merge_water -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Merge_water">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput"/>
-                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metalúrgica -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metalúrgica">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Acero"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Mercurio"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Petroleo -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Petroleo">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polluted_water_mass -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polluted_water_mass">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasDBO"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.4</xsd:minExclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasVolume"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Proceso_Industrial -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Proceso_Industrial">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Clean_water_mass"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process">
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput"/>
-                        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput"/>
-                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasCode"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasConcentracion"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasConcentracion"/>
-                        <owl:allValuesFrom>
-                            <rdfs:Datatype>
-                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-                                <owl:withRestrictions rdf:parseType="Collection">
-                                    <rdf:Description>
-                                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</xsd:maxInclusive>
-                                    </rdf:Description>
-                                </owl:withRestrictions>
-                            </rdfs:Datatype>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Rio -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Rio">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasWatermass"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Textil -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Textil">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                                <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                                <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Petroleo"/>
-                            </owl:Restriction>
-                        </owl:unionOf>
-                    </owl:Class>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasResiduo"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Residuo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Verter_Aguas -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Verter_Aguas">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput"/>
-                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Industria"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasInput"/>
-                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasOutput"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Process"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#hasPosicion"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:Class>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_1"/>
-        <hasEficiencia rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</hasEficiencia>
-        <hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2000.0</hasLimite>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasPosicion>
-        <hasTiempoVida rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</hasTiempoVida>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Depuradora"/>
-        <hasEficiencia rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</hasEficiencia>
-        <hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3000.0</hasLimite>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasPosicion>
-        <hasTiempoVida rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasTiempoVida>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Ejecutar_PI -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Ejecutar_PI">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Proceso_Industrial"/>
-        <hasCode>Ejecutar_PI</hasCode>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana_Ropa_Comun -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana_Ropa_Comun">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana"/>
-        <hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.7</hasConcentracion>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol_Disolver -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol_Disolver">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol"/>
-        <hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.7</hasConcentracion>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel_Loli -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel_Loli">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel"/>
-        <hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.6</hasConcentracion>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polleria_Loli -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polleria_Loli">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Animal"/>
-        <hasResiduo rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Metanol_Disolver"/>
-        <hasResiduo rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Piel_Loli"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#post_Polleria_Loli"/>
-        <hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float">200.0</hasLimite>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasPosicion>
-        <needsVolumen rdf:datatype="http://www.w3.org/2001/XMLSchema#float">30.0</needsVolumen>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Rio_Besos -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Rio_Besos">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Rio"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_2"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_3"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_4"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte_Ropa_Comun -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte_Ropa_Comun">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte"/>
-        <hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</hasConcentracion>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Verter_Aguas -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Verter_Aguas">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Verter_Aguas"/>
-        <hasCode>Verter_Aguas</hasCode>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Zhara -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Zhara">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Textil"/>
-        <hasResiduo rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Lana_Ropa_Comun"/>
-        <hasResiduo rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Tinte_Ropa_Comun"/>
-        <hasWatermass rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#post_Zhara"/>
-        <hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float">200.0</hasLimite>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasPosicion>
-        <needsVolumen rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</needsVolumen>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_0.0-_CEST_2016 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_0.0-_CEST_2016">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.9339876</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.6139879</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_100.0-Sat_JunCEST_2016 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_100.0-Sat_JunCEST_2016">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.9339876</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_2.6-14 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_2.6-14">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.5339875</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">32.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_2.6-2613 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora1_water_mass_2.6-2613">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.5339875</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">30.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora2_water_mass_2.0-3338 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora2_water_mass_2.0-3338">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora2_water_mass_2.8-123123 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#depuradora2_water_mass_2.8-123123">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.0</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#merge_water_another_implementation -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#merge_water_another_implementation">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Merge_water"/>
-        <hasCode>efficientMergeWater</hasCode>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#merge_water_luis_implementation -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#merge_water_luis_implementation">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Merge_water"/>
-        <hasCode>mergeWater</hasCode>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#post_Polleria_Loli -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#post_Polleria_Loli">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.6</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">30.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#post_Zhara -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#post_Zhara">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.0</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">40.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#pre_water_mass_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#pre_water_mass_1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polluted_water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.45</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#pre_water_mass_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#pre_water_mass_2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Clean_water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.2</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">30.5</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasDBO>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasPosicion>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">99940.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasDBO>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasPosicion>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">119920.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_3">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasDBO>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasPosicion>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">109870.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_4">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasDBO>
-        <hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasPosicion>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">86000.0</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#water_mass_0ae04097-7a6d-47bf-b50e-e5b1468a3d97 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#water_mass_0ae04097-7a6d-47bf-b50e-e5b1468a3d97">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Water_mass"/>
-        <hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float">35.55</hasDBO>
-        <hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float">32.5</hasVolume>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // General axioms
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#City_water"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Clean_water_mass"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#Polluted_water_mass"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#pre_water_mass_1"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#pre_water_mass_2"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#rio_water_mass_4"/>
-        </owl:distinctMembers>
-    </rdf:Description>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ontoprac="http://www.semanticweb.org/luisoliva/ontologies/2016/4/ontoprac#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:ontoprac1="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Verter_Aguas">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput"/>
+            </owl:onProperty>
+            <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:minQualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput"/>
+            </owl:onProperty>
+            <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:minQualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasOutput"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process"/>
+    </rdfs:subClassOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ontoprac1:hasCode>Verter_Aguas</ontoprac1:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Verter_Aguas"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Textil">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Restriction>
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+                </owl:onProperty>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+                >1</owl:qualifiedCardinality>
+                <owl:onClass>
+                  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Lana"/>
+                </owl:onClass>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+                </owl:onProperty>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+                >1</owl:qualifiedCardinality>
+                <owl:onClass>
+                  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Petroleo"/>
+                </owl:onClass>
+              </owl:Restriction>
+            </owl:unionOf>
+          </owl:Class>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Tinte"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasConcentracion"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.0</xsd:minInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasConcentracion"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</xsd:maxInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Mercurio">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput"/>
+            </owl:onProperty>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:minCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasOutput"/>
+            </owl:onProperty>
+            <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:cardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasCode"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasLimite"/>
+            </owl:onProperty>
+            <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasPosicion"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasWatermass"/>
+            </owl:onProperty>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:minCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasEficiencia"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.0</xsd:minInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasEficiencia"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</xsd:maxInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasLimite"/>
+            </owl:onProperty>
+            <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasTiempoVida"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                    >0</xsd:minInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasPosicion"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#City_water">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasDBO"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.3</xsd:minExclusive>
+                  </rdf:Description>
+                  <rdf:Description>
+                    <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.4</xsd:maxInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasVolume"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.0</xsd:minInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Animal">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Metanol"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Piel"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Piel">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Proceso_Industrial">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Clean_water_mass"/>
+            </owl:onClass>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasOutput"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass>
+              <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+            </owl:onClass>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Lana">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Acero">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasPosicion"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Clean_water_mass">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasDBO"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.0</xsd:minInclusive>
+                  </rdf:Description>
+                  <rdf:Description>
+                    <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.3</xsd:maxInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasVolume"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.0</xsd:minInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith>
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Polluted_water_mass"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Metalúrgica">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Acero"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Mercurio"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Rio">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasWatermass"/>
+        </owl:onProperty>
+        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minQualifiedCardinality>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Merge_water">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput"/>
+            </owl:onProperty>
+            <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >2</owl:minQualifiedCardinality>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasOutput"/>
+            </owl:onProperty>
+            <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+            >1</owl:qualifiedCardinality>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Metanol">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Polluted_water_mass">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasDBO"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.4</xsd:minExclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasVolume"/>
+            </owl:onProperty>
+            <owl:allValuesFrom>
+              <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                  <rdf:Description>
+                    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.0</xsd:minInclusive>
+                  </rdf:Description>
+                </owl:withRestrictions>
+              </rdfs:Datatype>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Tinte">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Petroleo">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasResiduo">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasOutput">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasInput">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasWatermass">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasDBO">
+    <rdfs:subPropertyOf>
+      <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasIndicator"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasPosicion">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasCode">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Process"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasEficiencia">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasIndicator">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasConcentracion">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Residuo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasLimite">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasVolume">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#needsVolumen">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Industria"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#hasTiempoVida">
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:DatatypeProperty>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Polleria_Loli">
+    <ontoprac1:hasResiduo>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Metanol_Disolver">
+        <ontoprac1:hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.7</ontoprac1:hasConcentracion>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Metanol"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasResiduo>
+    <ontoprac1:hasResiduo>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Piel_Loli">
+        <ontoprac1:hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.6</ontoprac1:hasConcentracion>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Piel"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasResiduo>
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#post_Polleria_Loli">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.6</ontoprac1:hasDBO>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <ontoprac1:hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >200.0</ontoprac1:hasLimite>
+    <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >1</ontoprac1:hasPosicion>
+    <ontoprac1:needsVolumen rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >30.0</ontoprac1:needsVolumen>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Animal"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora1_water_mass_100.0-Sat_JunCEST_2016">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >1.9339876</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >40.0</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#merge_water_another_implementation">
+    <ontoprac1:hasCode>efficientMergeWater</ontoprac1:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Merge_water"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora1">
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora1_water_mass_1">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >1.6139879</ontoprac1:hasDBO>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >500.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <ontoprac1:hasEficiencia rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >1.0</ontoprac1:hasEficiencia>
+    <ontoprac1:hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >2000.0</ontoprac1:hasLimite>
+    <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</ontoprac1:hasPosicion>
+    <ontoprac1:hasTiempoVida rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >0</ontoprac1:hasTiempoVida>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#water_mass_0ae04097-7a6d-47bf-b50e-e5b1468a3d97">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >35.55</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >32.5</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora2">
+    <ontoprac1:hasEficiencia rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >0.3</ontoprac1:hasEficiencia>
+    <ontoprac1:hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >3000.0</ontoprac1:hasLimite>
+    <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >3</ontoprac1:hasPosicion>
+    <ontoprac1:hasTiempoVida rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >5</ontoprac1:hasTiempoVida>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Depuradora"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Zhara">
+    <ontoprac1:hasResiduo>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Lana_Ropa_Comun">
+        <ontoprac1:hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.7</ontoprac1:hasConcentracion>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Lana"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasResiduo>
+    <ontoprac1:hasResiduo>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Tinte_Ropa_Comun">
+        <ontoprac1:hasConcentracion rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.3</ontoprac1:hasConcentracion>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Tinte"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasResiduo>
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#post_Zhara">
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >80.0</ontoprac1:hasVolume>
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.5</ontoprac1:hasDBO>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <ontoprac1:hasLimite rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >200.0</ontoprac1:hasLimite>
+    <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</ontoprac1:hasPosicion>
+    <ontoprac1:needsVolumen rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >40.0</ontoprac1:needsVolumen>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Textil"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Rio_Besos">
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#rio_water_mass">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.0</ontoprac1:hasDBO>
+        <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >1</ontoprac1:hasPosicion>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >99940.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#rio_water_mass_2">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.0</ontoprac1:hasDBO>
+        <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >2</ontoprac1:hasPosicion>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >119880.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#rio_water_mass_3">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.0</ontoprac1:hasDBO>
+        <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >3</ontoprac1:hasPosicion>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >109870.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <ontoprac1:hasWatermass>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#rio_water_mass_4">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.0</ontoprac1:hasDBO>
+        <ontoprac1:hasPosicion rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >4</ontoprac1:hasPosicion>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >86000.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+      </owl:NamedIndividual>
+    </ontoprac1:hasWatermass>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Rio"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#merge_water_luis_implementation">
+    <ontoprac1:hasCode>mergeWater</ontoprac1:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Merge_water"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora1_water_mass_2.6-2613">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >2.5339875</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >30.0</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Ejecutar_PI">
+    <ontoprac1:hasCode>Ejecutar_PI</ontoprac1:hasCode>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Proceso_Industrial"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora2_water_mass_2.8-123123">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >5.0</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >50.0</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#pre_water_mass_1">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.45</ontoprac1:hasDBO>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >20.0</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Polluted_water_mass"/>
+      </owl:NamedIndividual>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#pre_water_mass_2">
+        <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.2</ontoprac1:hasDBO>
+        <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >30.5</ontoprac1:hasVolume>
+        <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Clean_water_mass"/>
+      </owl:NamedIndividual>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora1_water_mass_0.0-_CEST_2016">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >4.9339876</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >50.0</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
+  <owl:AllDifferent>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#rio_water_mass_4"/>
+    </owl:distinctMembers>
+  </owl:AllDifferent>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora1_water_mass_2.6-14">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >2.5339875</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >32.0</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#City_water"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Clean_water_mass"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Polluted_water_mass"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#depuradora2_water_mass_2.0-3338">
+    <ontoprac1:hasDBO rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >2.0</ontoprac1:hasDBO>
+    <ontoprac1:hasVolume rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >40.0</ontoprac1:hasVolume>
+    <rdf:type rdf:resource="http://www.semanticweb.org/daniferran/ontologies/2016/4/ontoprac#Water_mass"/>
+  </owl:NamedIndividual>
 </rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi -->
-
